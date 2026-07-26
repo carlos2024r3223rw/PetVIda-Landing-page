@@ -1,55 +1,88 @@
-# Aurelia — Landing Page de Alta Conversión
+# ✦ Nebula Setups — Landing Page
 
-Una landing page moderna, ultrarrápida y optimizada para **conversión directa** (ventas y captura de leads). Diseñada bajo un enfoque *Mobile-First*, con microinteracciones sutiles, prueba social visible y una jerarquía clara enfocada en los botones de llamada a la acción (CTAs).
+![Nebula Setups](https://img.shields.io/badge/Nebula-Setups-00e5ff?style=for-the-badge&labelColor=07080d)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
----
-
-## 🚀 Características Principales
-
-- **⚡ Carga Ultrarrápida:** Construida con HTML5, CSS3 y Vanilla JavaScript sin dependencias ni frameworks pesados.
-- **📱 Enfoque Mobile-First:** Diseñada priorizando la experiencia en dispositivos móviles (smartphones y tablets).
-- **🔥 Psicología de Ventas & Conversión:**
-  - Barra superior de urgencia con temporizador en tiempo real (*Countdown Timer*).
-  - Botones de acción principales (CTAs) destacados con animaciones de pulso.
-  - Botón de compra flotante (*Sticky CTA*) automático en dispositivos móviles.
-  - Indicador de stock limitado con actualización dinámica.
-- **🛡️ Prueba Social y Confianza:**
-  - Calificación destacada y contador de clientas satisfechas.
-  - Sección de reseñas de compradoras verificadas.
-  - Módulo interactivo de preguntas frecuentes (FAQ Accordion).
-  - Distintivos de garantía y logos de métodos de pago seguros (Visa, Mastercard, PayPal).
-- **📩 Captura de Leads:** Formulario integrado para suscripción y cupón de descuento.
+> Landing page moderna y premium para **Nebula Setups** — una marca de tecnología enfocada en jugadores de cloud gaming.
 
 ---
 
-## 📂 Estructura del Código
+## 🎮 Sobre el Proyecto
+
+**Nebula Setups** ofrece el **Cloud-Station Bundle**, un combo premium diseñado para transformar cualquier portátil básico en una estación de juegos de alta gama. Este bundle incluye:
+
+- 🖥️ **Monitor Ultrawide 34"** — Panel IPS 21:9 · 3440×1440 · 165Hz · 1ms
+- ⌨️ **Teclado Mecánico Compacto** — Layout 65% · Switches lineales · Aluminio CNC
+- 🖱️ **Ratón de Alta Precisión** — Sensor 26K DPI · 58g · Polling rate 4000Hz
+
+---
+
+## 🚀 Características de la Landing Page
+
+| Característica | Descripción |
+|---|---|
+| 🌑 **Dark Mode** | Estética inmersiva con fondos oscuros y acentos neón (cyan + verde) |
+| ✨ **Animaciones CSS** | Scroll reveal, contadores animados, partículas flotantes, parallax |
+| 📱 **Responsive** | Diseño adaptable a desktop, tablet y mobile |
+| ⚡ **Rendimiento** | Sin frameworks pesados, carga ultrarrápida |
+| 🎯 **SEO Optimizado** | Meta tags, estructura semántica HTML5, heading hierarchy |
+
+---
+
+## 📂 Estructura del Proyecto
 
 ```
-├── landing page.html   # Estructura semántica del sitio y componentes de conversión
-├── style.css           # Sistema de diseño con variables CSS, animaciones y responsive layout
-├── script.js           # Lógica interactiva (temporizador, acordeón, revelación en scroll, etc.)
-└── README.md           # Documentación del repositorio
+nebula-setups-landing/
+├── index.html              # Estructura HTML principal
+├── styles.css              # Estilos CSS (dark mode, animaciones, responsive)
+├── script.js               # JavaScript (interacciones y efectos)
+├── assets/
+│   └── images/
+│       ├── hero-setup.png        # Imagen principal del hero
+│       ├── product-monitor.png   # Monitor ultrawide
+│       ├── product-keyboard.png  # Teclado mecánico
+│       └── product-mouse.png     # Ratón de precisión
+└── README.md
 ```
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Tecnologías
 
-- **HTML5:** Marcado semántico y accesible.
-- **CSS3:** Variables nativas, Flexbox, CSS Grid y animaciones optimizadas.
-- **JavaScript (ES6+):** Vanilla JS para la lógica interactiva y observadores de intersección (*Intersection Observer*).
+- **HTML5** — Estructura semántica
+- **CSS3** — Variables CSS, Flexbox, Grid, animaciones, media queries
+- **JavaScript Vanilla** — Intersection Observer, requestAnimationFrame
+- **Google Fonts** — Outfit + Inter
 
 ---
 
-## 💻 Vista Previa Local
+## 📋 Secciones
 
-Para ejecutar el proyecto localmente:
+1. **Navbar** — Sticky con glassmorphism y menú responsive
+2. **Hero** — Título de impacto + imagen del setup + estadísticas animadas
+3. **Features** — 4 ventajas clave del producto
+4. **Bundle** — Los 3 productos con especificaciones detalladas
+5. **Specs** — Contadores animados con números clave
+6. **Testimonials** — Opiniones de cloud gamers
+7. **CTA** — Llamado a la acción con precio y unidades limitadas
+8. **Footer** — Enlaces y copyright
 
-1. Clona este repositorio:
+---
+
+## 🚀 Cómo Usar
+
+1. Clona el repositorio:
    ```bash
-   git clone https://github.com/carlos2024r3223rw/aurelia-landing-page.git
+   git clone https://github.com/carlos2024r3223rw/nebula-setups-landing.git
    ```
-2. Abre `landing page.html` directamente en tu navegador o inicia un servidor local:
-   ```bash
-   npx serve
-   ```
+2. Abre `index.html` en tu navegador.
+
+> No necesita servidor ni dependencias. ¡Solo abre y listo!
+
+---
+
+## 📄 Licencia
+
+© 2026 Nebula Setups. Todos los derechos reservados.

@@ -1,201 +1,226 @@
 /* ============================================
-   AURELIA — Landing Page de Conversión
-   Archivo: script.js
-   Funcionalidad ligera, sin dependencias
+   NEBULA SETUPS — LANDING PAGE SCRIPTS
    ============================================ */
 
-(function () {
-  'use strict';
+document.addEventListener('DOMContentLoaded', () => {
 
-  // ---------- COUNTDOWN TIMER ----------
-  const countdownEl = document.getElementById('countdown');
-  // 3 horas desde la carga de la página
-  let totalSeconds = 3 * 60 * 60;
+  /* ── Navbar scroll effect ──────────────── */
+  const navbar = document.getElementById('navbar');
 
-  function updateCountdown() {
-    if (totalSeconds <= 0) {
-      countdownEl.textContent = '¡EXPIRADO!';
-      return;
+  const handleNavbarScroll = () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('navbar--scrolled');
+    } else {
+      navbar.classList.remove('navbar--scrolled');
     }
-    const h = Math.floor(totalSeconds / 3600);
-    const m = Math.floor((totalSeconds % 3600) / 60);
-    const s = totalSeconds % 60;
-    countdownEl.textContent =
-      String(h).padStart(2, '0') + ':' +
-      String(m).padStart(2, '0') + ':' +
-      String(s).padStart(2, '0');
-    totalSeconds--;
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  };
 
-  // ---------- NAV SCROLL ----------
-  const nav = document.getElementById('nav');
-  const urgencyBar = document.getElementById('urgencyBar');
+  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
-  function handleNavScroll() {
-    const scrolled = window.scrollY > 50;
-    nav.classList.toggle('is-scrolled', scrolled);
-  }
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  /* ── Mobile nav toggle ─────────────────── */
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
 
-  // ---------- MOBILE MENU ----------
-  const burger = document.getElementById('navBurger');
-  const navLinks = document.getElementById('navLinks');
-
-  burger.addEventListener('click', function () {
-    burger.classList.toggle('is-active');
-    navLinks.classList.toggle('is-open');
-    document.body.style.overflow = navLinks.classList.contains('is-open') ? 'hidden' : '';
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
   });
 
-  // Cerrar menú al hacer clic en un enlace
-  navLinks.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      burger.classList.remove('is-active');
-      navLinks.classList.remove('is-open');
-      document.body.style.overflow = '';
+  // Close mobile menu on link click
+  navLinks.querySelectorAll('.navbar__link').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
     });
   });
 
-  // ---------- REVEAL ON SCROLL (Intersection Observer) ----------
-  var revealObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.reveal').forEach(function (el) {
-    revealObserver.observe(el);
+  /* ── Smooth scroll for all anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 
-  // ---------- ANIMATED COUNTERS ----------
-  var counterObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
+  /* ── Reveal on scroll (Intersection Observer) ── */
+  const revealElements = () => {
+    // Tag elements for reveal
+    const selectors = [
+      '.feature-card',
+      '.product-card',
+      '.spec-item',
+      '.testimonial-card',
+      '.section__tag',
+      '.section__title',
+      '.section__subtitle',
+      '.cta-section__content',
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach((el, i) => {
+      el.classList.add('reveal');
+      // Add staggered delay based on siblings
+      const parent = el.parentElement;
+      const siblings = parent ? Array.from(parent.children).filter(c => c.classList.contains('reveal')) : [];
+      const index = siblings.indexOf(el);
+      if (index >= 0 && index < 4) {
+        el.classList.add(`reveal--delay-${index + 1}`);
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
+          entry.target.classList.add('reveal--visible');
+          observer.unobserve(entry.target);
         }
       });
-    },
-    { threshold: 0.5 }
-  );
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px',
+    });
 
-  document.querySelectorAll('.stat__number').forEach(function (el) {
-    counterObserver.observe(el);
-  });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  };
 
-  function animateCounter(el) {
-    var target = parseInt(el.getAttribute('data-target'), 10);
-    var duration = 1800;
-    var start = 0;
-    var startTime = null;
+  revealElements();
 
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out cubic
-      var ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(ease * target);
-      if (progress < 1) {
-        requestAnimationFrame(step);
+  /* ── Counter animation ─────────────────── */
+  const animateCounters = () => {
+    const counters = document.querySelectorAll('[data-count]');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count, 10);
+          const duration = 1800;
+          const start = performance.now();
+
+          const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+          const animate = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutQuart(progress);
+            el.textContent = Math.round(easedProgress * target).toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(c => counterObserver.observe(c));
+  };
+
+  animateCounters();
+
+  /* ── Floating particles in hero ─────────── */
+  const createParticles = () => {
+    const container = document.getElementById('hero-particles');
+    if (!container) return;
+
+    const particleCount = 30;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+
+      Object.assign(particle.style, {
+        position: 'absolute',
+        width:  `${size}px`,
+        height: `${size}px`,
+        borderRadius: '50%',
+        background: Math.random() > 0.5
+          ? 'rgba(0, 229, 255, .35)'
+          : 'rgba(57, 255, 127, .3)',
+        left: `${Math.random() * 100}%`,
+        top:  `${Math.random() * 100}%`,
+        animation: `floatParticle ${6 + Math.random() * 10}s ease-in-out infinite`,
+        animationDelay: `${Math.random() * 5}s`,
+        pointerEvents: 'none',
+      });
+
+      container.appendChild(particle);
+    }
+
+    // Inject keyframes once
+    if (!document.getElementById('particle-keyframes')) {
+      const style = document.createElement('style');
+      style.id = 'particle-keyframes';
+      style.textContent = `
+        @keyframes floatParticle {
+          0%, 100% { transform: translate(0, 0) scale(1);   opacity: .4; }
+          25%      { transform: translate(15px, -20px) scale(1.2); opacity: .7; }
+          50%      { transform: translate(-10px, -40px) scale(.8); opacity: .5; }
+          75%      { transform: translate(20px, -15px) scale(1.1); opacity: .6; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  };
+
+  createParticles();
+
+  /* ── Parallax-lite on hero image ─────────── */
+  const heroImageWrapper = document.getElementById('hero-image-wrapper');
+
+  if (heroImageWrapper && window.innerWidth > 768) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth  - 0.5) * 12;
+      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+      heroImageWrapper.style.transform = `translate(${x}px, ${y}px)`;
+    }, { passive: true });
+  }
+
+  /* ── Hide scroll indicator on scroll ─────── */
+  const scrollIndicator = document.getElementById('scroll-indicator');
+
+  if (scrollIndicator) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 120) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.pointerEvents = 'none';
       } else {
-        el.textContent = target;
+        scrollIndicator.style.opacity = '';
+        scrollIndicator.style.pointerEvents = '';
       }
-    }
-    requestAnimationFrame(step);
+    }, { passive: true });
   }
 
-  // ---------- FAQ ACCORDION ----------
-  document.querySelectorAll('.faq__question').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var faq = btn.closest('.faq');
-      var isOpen = faq.classList.contains('is-open');
+  /* ── Active nav link on scroll ──────────── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinksAll = document.querySelectorAll('.navbar__link');
 
-      // Cerrar todos los demás
-      document.querySelectorAll('.faq.is-open').forEach(function (openFaq) {
-        openFaq.classList.remove('is-open');
-        openFaq.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
-      });
+  const highlightNav = () => {
+    const scrollPos = window.scrollY + 120;
 
-      // Toggle el actual
-      if (!isOpen) {
-        faq.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
+    sections.forEach(section => {
+      const top    = section.offsetTop;
+      const height = section.offsetHeight;
+      const id     = section.getAttribute('id');
 
-  // ---------- EMAIL FORM ----------
-  var emailForm = document.getElementById('emailForm');
-  var emailMsg = document.getElementById('emailMsg');
-
-  emailForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('emailInput').value.trim();
-    if (email) {
-      emailMsg.textContent = '✅ ¡Listo! Revisa tu correo — tu guía y cupón de 25% están en camino.';
-      emailMsg.style.color = '#A5D6A7';
-      emailForm.reset();
-
-      // Limpiar mensaje después de 8 segundos
-      setTimeout(function () {
-        emailMsg.textContent = '';
-      }, 8000);
-    }
-  });
-
-  // ---------- STICKY CTA (MOBILE) ----------
-  var stickyCta = document.getElementById('stickyCta');
-  var heroBuyBtn = document.getElementById('heroBuyBtn');
-
-  if (stickyCta && heroBuyBtn) {
-    var stickyObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          // Mostrar sticky cuando el botón del hero ya no es visible
-          if (!entry.isIntersecting) {
-            stickyCta.classList.add('is-visible');
-          } else {
-            stickyCta.classList.remove('is-visible');
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinksAll.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === `#${id}`) {
+            link.style.color = 'var(--accent-cyan)';
           }
         });
-      },
-      { threshold: 0 }
-    );
-    stickyObserver.observe(heroBuyBtn);
-  }
-
-  // ---------- SIMULAR STOCK DECRECIENTE ----------
-  var stockEl = document.getElementById('stockCount');
-  if (stockEl) {
-    var stock = parseInt(stockEl.textContent, 10);
-    setInterval(function () {
-      if (stock > 3) {
-        stock--;
-        stockEl.textContent = stock;
-      }
-    }, 45000); // Cada 45 segundos baja una unidad
-  }
-
-  // ---------- SMOOTH SCROLL PARA TODOS LOS ANCHOR LINKS ----------
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      var targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        var offset = 80;
-        var top = targetEl.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
-  });
+  };
 
-})();
+  window.addEventListener('scroll', highlightNav, { passive: true });
+
+});
