@@ -5,65 +5,65 @@
    ========================================================= */
 
 const CONFIG = {
-  // ✏️ EDITA: tu número de WhatsApp Business — código de país + número,
+  // EDIT: tu número de WhatsApp Business — código de país + número,
   // solo dígitos (sin +, sin espacios, sin guiones). Todos los botones
   // "Agendar cita" / "WhatsApp" de la página usan este único número.
   whatsappNumber: "50370000000",
 
-  // ✏️ EDITA: número de teléfono fijo de la clínica
+  // EDIT: número de teléfono fijo de la clínica
   phoneNumber: "+50322000000",
 
-  // ✏️ EDITA: servicios de la clínica (icono, nombre, descripción)
+  // EDIT: servicios de la clínica (icono, nombre, descripción)
   services: [
     {
-      icon: "🩺",
+      icon: "heart",
       name: "Consulta General",
       desc: "Revisión completa del estado de salud de tu mascota con diagnóstico profesional.",
     },
     {
-      icon: "💉",
+      icon: "syringe",
       name: "Vacunación",
       desc: "Esquema completo de vacunas para cachorros, adultos, perros y gatos.",
     },
     {
-      icon: "🔬",
+      icon: "flask",
       name: "Laboratorio",
       desc: "Análisis clínicos con resultados rápidos: sangre, orina, heces y más.",
     },
     {
-      icon: "✂️",
+      icon: "plus",
       name: "Cirugía",
       desc: "Cirugías programadas y de emergencia con equipo de última generación.",
     },
     {
-      icon: "🐩",
+      icon: "scissors",
       name: "Estética Canina",
       desc: "Baño, corte, limpieza de oídos y uñas. Tu mascota guapísima.",
     },
     {
-      icon: "🦷",
+      icon: "plus",
       name: "Odontología",
       desc: "Limpieza dental profesional y tratamientos orales especializados.",
     },
   ],
 
-  // ✏️ EDITA: testimonios de clientes (nombre, mascota, texto, estrellas de 1 a 5)
+  // EDIT: testimonios de clientes (nombre, mascota, texto, estrellas de 1 a 5)
   reviews: [
     {
       name: "María González",
-      pet: "🐕 Max — Golden Retriever",
+      pet: "Max — Golden Retriever",
       text: "Increíble atención. Max salió de su cirugía perfecto y lo trataron con mucho amor.",
       stars: 5,
     },
     {
       name: "Carlos Rodríguez",
-      pet: "🐈 Luna — Gata Persa",
+      pet: "Luna — Gata Persa",
       text: "Por fin encontré veterinarios que entienden a los gatos. Luna va feliz a sus consultas.",
       stars: 5,
     },
     {
       name: "Ana Martínez",
-      pet: "🐕 Rocky — Bulldog",
+      pet: "Rocky — Bulldog",
       text: "Precios justos y transparentes. Rocky tiene su esquema de vacunas completo gracias a PetVida.",
       stars: 5,
     },
@@ -82,7 +82,7 @@ function renderServices() {
       (s) => `
     <div class="service-card reveal">
       <div class="service-card__icon">
-        <span class="service-card__icon-emoji">${s.icon}</span>
+        <svg class="ui-icon" aria-hidden="true"><use href="#icon-${s.icon}"></use></svg>
       </div>
       <h3>${s.name}</h3>
       <p>${s.desc}</p>
@@ -221,7 +221,7 @@ function initParallax() {
 
 
 const EN_TEXT = {
-  "🐾 Primera consulta con": "🐾 First consultation with",
+  "Primera consulta con": "First consultation with",
   "20% de descuento": "20% off",
   "· Atención de emergencia": "· Emergency care",
   "Servicios": "Services",
@@ -229,7 +229,7 @@ const EN_TEXT = {
   "Testimonios": "Testimonials",
   "Contacto": "Contact",
   "Agendar cita": "Book an appointment",
-  "🏥 Clínica veterinaria certificada": "🏥 Certified veterinary clinic",
+  "Clínica veterinaria certificada": "Certified veterinary clinic",
   "Tu mascota merece": "Your pet deserves",
   "el mejor cuidado.": "the best care.",
   "Más de 10 años protegiendo la salud y felicidad de tus compañeros peludos. Médicos especializados, tecnología de punta y mucho amor.": "Over 10 years caring for the health and happiness of your furry companions. Specialized veterinarians, modern equipment, and plenty of love.",
@@ -272,11 +272,11 @@ const EN_TEXT = {
   "Primera consulta con 20% OFF": "20% off your first consultation",
   "¿Listo para cuidar a tu mejor amigo?": "Ready to care for your best friend?",
   "Agenda una cita hoy y obtén un": "Book an appointment today and get",
-  "en tu primera consulta. Respondemos en menos de 5 minutos.": "off your first consultation. We respond in under 5 minutes.",
+  "en tu primera consulta. Respondemos en menos de 5 minutos.": "on your first consultation. We respond in under 5 minutes.",
   "Agendar por WhatsApp": "Book via WhatsApp",
-  "✅ Respuesta en menos de 5 min": "✅ Reply in under 5 min",
-  "🕐 Atención 24/7": "🕐 24/7 care",
-  "💳 Todos los métodos de pago": "💳 All payment methods",
+  "Respuesta en menos de 5 min": "Reply in under 5 min",
+  "Atención 24/7": "24/7 care",
+  "Todos los métodos de pago": "All payment methods",
   "Encuéntranos": "Find us",
   "Estamos cerca de ti": "We're close to you",
   "Dirección": "Address",
@@ -291,7 +291,7 @@ const EN_TEXT = {
   "Estética": "Grooming",
   "Clínica": "Clinic",
   "© 2026 PetVida. Todos los derechos reservados.": "© 2026 PetVida. All rights reserved.",
-  "🐾 ¿Tu mascota necesita atención?": "🐾 Does your pet need care?",
+  "¿Tu mascota necesita atención?": "Does your pet need care?",
   "Respuesta inmediata": "Quick response",
   "Consulta General": "General Checkup",
   "Revisión completa del estado de salud de tu mascota con diagnóstico profesional.": "A complete health checkup for your pet with a professional diagnosis.",
@@ -304,13 +304,13 @@ const EN_TEXT = {
   "Odontología": "Dental Care",
   "Limpieza dental profesional y tratamientos orales especializados.": "Professional dental cleaning and specialized oral care.",
   "María González": "María González",
-  "🐕 Max — Golden Retriever": "🐕 Max — Golden Retriever",
+  "Max — Golden Retriever": "Max — Golden Retriever",
   "Increíble atención. Max salió de su cirugía perfecto y lo trataron con mucho amor.": "Wonderful care. Max came through his surgery well, and the team treated him with so much love.",
   "Carlos Rodríguez": "Carlos Rodríguez",
-  "🐈 Luna — Gata Persa": "🐈 Luna — Persian Cat",
+  "Luna — Gata Persa": "Luna — Persian Cat",
   "Por fin encontré veterinarios que entienden a los gatos. Luna va feliz a sus consultas.": "I finally found vets who understand cats. Luna is happy to visit for her checkups.",
   "Ana Martínez": "Ana Martínez",
-  "🐕 Rocky — Bulldog": "🐕 Rocky — Bulldog",
+  "Rocky — Bulldog": "Rocky — Bulldog",
   "Precios justos y transparentes. Rocky tiene su esquema de vacunas completo gracias a PetVida.": "Fair, transparent prices. Rocky is fully vaccinated thanks to PetVida."
 };
 
