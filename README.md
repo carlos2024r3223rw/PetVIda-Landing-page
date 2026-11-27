@@ -37,4 +37,20 @@ HTML, CSS, and vanilla JavaScript. The page uses Google Fonts (Inter and Playfai
 
 | Home | Services |
 | :---: | :---: |
-| <img width="1857" height="950" alt="PetVida landing page home section" src="https://github.com/user-attachments/assets/4bb10872-8af8-4ec1-8e2a-9de346e48b7d" /> | <img width="1871" height="950" alt="PetVida landing page services section"
+| <img width="1857" height="950" alt="PetVida landing page home section" src="https://github.com/user-attachments/assets/4bb10872-8af8-4ec1-8e2a-9de346e48b7d" /> | <img width="1871" height="950" alt="PetVida landing page services section" src="https://github.com/user-attachments/assets/f74a9a53-39c4-4fd4-959c-1d0edc7f22de" /> |
+
+The files `hero.png` and `services.png` in the repository are page artwork, not interface screenshots.
+
+## Project files
+
+```text
+PetVIda-Landing-page/
+├── hero.png
+├── services.png
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
+
+This project is an independent portfolio concept and is not affiliated with a real veterinary clinic.
