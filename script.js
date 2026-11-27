@@ -283,6 +283,7 @@ const EN_TEXT = {
   "Colonia Escalón, Calle El Mirador #123, San Salvador": "Colonia Escalón, Calle El Mirador #123, San Salvador",
   "Horarios": "Hours",
   "Lunes a Sábado: 7:00 AM – 8:00 PM": "Monday to Saturday: 7:00 AM – 8:00 PM",
+  "Emergencias: 24/7": "Emergencies: 24/7",
   "Teléfono": "Phone",
   "Cuidando a quienes más amas, con amor profesional.": "Professional care for the ones you love most.",
   "Consultas": "Checkups",
