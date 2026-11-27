@@ -1,4 +1,4 @@
-# PetVida — Veterinary Landing Page
+# PetVida: Veterinary Landing Page
 
 A responsive bilingual landing page concept for a veterinary clinic. It presents services, trust signals, testimonials, contact information, and appointment calls to action in Spanish and English.
 
@@ -11,7 +11,6 @@ A responsive bilingual landing page concept for a veterinary clinic. It presents
 - Hero, statistics, services, about, booking steps, testimonials, contact, and footer sections.
 - WhatsApp links built from one configurable number.
 - Lightweight scroll animations and reduced-motion support.
-- A second call button was removed because the demo has no real clinic phone line.
 
 ## Built with
 
@@ -36,18 +35,6 @@ HTML, CSS, and vanilla JavaScript. The page uses Google Fonts (Inter and Playfai
 
 ## Screenshots
 
-Interface screenshots can be added here. `hero.png` and `services.png` are page artwork, not screenshots.
-
-## Project files
-
-```text
-PetVIda-Landing-page/
-├── hero.png
-├── services.png
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-```
-
-This project is an independent portfolio concept and is not affiliated with a real veterinary clinic.
+| Home | Services |
+| :---: | :---: |
+| <img width="1857" height="950" alt="PetVida landing page home section" src="https://github.com/user-attachments/assets/4bb10872-8af8-4ec1-8e2a-9de346e48b7d" /> | <img width="1871" height="950" alt="PetVida landing page services section"
