@@ -331,7 +331,8 @@ function initLanguageSwitch() {
   while (walker.nextNode()) {
     const node = walker.currentNode;
     const key = node.nodeValue.trim().replace(/\s+/g, " ");
-    if (key && EN_TEXT[key]) nodes.push({ node, original: node.nodeValue, key });
+    const plain = key.replace(/^"|"$/g, "");
+    if (plain && EN_TEXT[plain]) nodes.push({ node, original: node.nodeValue, key: plain, quoted: plain !== key });
   }
 
   const attributes = [];
@@ -354,13 +355,13 @@ function initLanguageSwitch() {
       ? "PetVida is a bilingual veterinary landing page concept with services, testimonials, and appointment calls to action."
       : "PetVida — Clínica veterinaria con atención 24/7. Consultas, vacunación, cirugía, estética canina y felina. Agenda tu cita por WhatsApp.";
 
-    nodes.forEach(({ node, original, key }) => {
+    nodes.forEach(({ node, original, key, quoted }) => {
       if (!english) {
         node.nodeValue = original;
       } else {
         const leading = original.match(/^\s*/)[0];
         const trailing = original.match(/\s*$/)[0];
-        node.nodeValue = leading + EN_TEXT[key] + trailing;
+        node.nodeValue = leading + (quoted ? '"' : "") + EN_TEXT[key] + (quoted ? '"' : "") + trailing;
       }
     });
     attributes.forEach(({ element, name, original }) => {
